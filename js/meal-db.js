@@ -1,6 +1,7 @@
 const searchFoods = () => {
     const searchField = document.getElementById('search-food');
     const searchInput = searchField.value;
+    searchField.value = '';
 
     if (searchInput == '') {
         alert('Please input something');
@@ -8,10 +9,32 @@ const searchFoods = () => {
     else {
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`)
             .then(res => res.json())
-            .then(data => displaySearchResult(data.meals));
+            .then(data => displaySearchResult(data.meals))
+            .catch(error => displayError(error));
     }
 }
+const displayError = error => {
+    document.getElementById('error-msg').style.display = 'block';
 
+}
+
+// const errorMessage = () => {
+//     const searchField = document.getElementById('search-food');
+//     const searchInput = searchField.value;
+//     const errorDiv = document.getElementById('error-msg');
+//     const div = document.createElement('div');
+//     div.classList.add('card');
+//     div.innerHTML = `
+//     <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+//         <div class="card-header">ERROR OCCURS !</div>
+//         <div class="card-body">
+//             <h5 class="card-title">You input is incorrect.</h5>
+//             <p class="card-text">We do not have ${searchInput} kind of meal in our stock.</p>
+//         </div>
+//     </div>
+//     `;
+//     errorDiv.appendChild(div);
+// }
 
 const displaySearchResult = meals => {
     const foodsContainer = document.getElementById('display-food');
