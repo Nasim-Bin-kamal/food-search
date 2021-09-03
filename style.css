@@ -1,0 +1,14 @@
+body {
+  background-image: url(images/bg-image.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+footer {
+  position: absolute;
+  left: 50%;
+  color: white;
+  transform: translateX(-50%);
+  bottom: 2rem;
+  font-weight: lighter;
+}
